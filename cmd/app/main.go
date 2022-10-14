@@ -15,6 +15,13 @@ func main() {
 	db.DB.AutoMigrate(models.User{})
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", router.HomeHandler)
+
+	r.HandleFunc("/", router.Home)
+
+	r.HandleFunc("/users", router.GetUsers).Methods("GET")
+	r.HandleFunc("/users/{id}", router.GetUser).Methods("GET")
+	r.HandleFunc("/users", router.CreateUser).Methods("POST")
+	r.HandleFunc("/users/{id}", router.DeleteUser).Methods("DELETE")
+
 	http.ListenAndServe(":8080", r)
 }
