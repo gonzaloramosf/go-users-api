@@ -7,8 +7,8 @@ import (
 type Task struct {
 	gorm.Model
 
-	Title       string `gorm:"type:varchar(200);not null;unique_index"`
-	Description string
-	Status      bool `gorm:"default:false"`
-	UserID      uint `gorm:"not null;unique_index"`
+	Title       string `gorm:"type:varchar(200);not null;unique_index" json:"title"`
+	Description string `json:"description"`
+	Status      bool   `gorm:"default:false" json:"status"`
+	UserID      uint   `gorm:"not null;unique_index" json:"userId"`
 }
